@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seulgi Restaurant | Fine Dining Korean Cuisine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --light-gray: #f8f8f8;
+            --mid-gray: #888888;
+            --dark-gray: #222222;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Jost', sans-serif;
+        }
+
+        /* Global Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: var(--font-serif);
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Typography */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--mid-gray);
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--white);
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        .btn-dark {
+            border-color: var(--black);
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .btn-dark:hover {
+            background-color: transparent;
+            color: var(--black);
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+        }
+
+        nav .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--mid-gray);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1580651315530-69c8e0026377?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 40px;
+            font-family: var(--font-serif);
+            letter-spacing: 1px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 20px;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            font-family: var(--font-serif);
+            line-height: 1.8;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 100px 20px;
+            background-color: var(--light-gray);
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 60px;
+        }
+
+        .menu-category h3 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .menu-item {
+            margin-bottom: 25px;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .menu-item-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .menu-item-price {
+            font-family: var(--font-sans);
+            font-weight: 500;
+        }
+
+        .menu-item-desc {
+            font-size: 0.95rem;
+            color: var(--mid-gray);
+        }
+
+        /* Reservation Section */
+        .reservation {
+            padding: 100px 20px;
+            background-color: var(--white);
+        }
+
+        .reservation-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+        }
+
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            background-color: var(--light-gray);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--black);
+        }
+
+        .reservation-form .btn-dark {
+            grid-column: span 2;
+            margin-top: 20px;
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            padding: 80px 20px;
+            background-color: var(--light-gray);
+            text-align: center;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .qr-card {
+            background-color: var(--white);
+            padding: 40px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+        }
+
+        .qr-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .qr-card p {
+            font-size: 0.9rem;
+            color: var(--mid-gray);
+            margin-bottom: 25px;
+        }
+
+        .qr-card img {
+            width: 150px;
+            height: 150px;
+            border: 1px solid var(--light-gray);
+            padding: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+
+        footer h2 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        footer p {
+            color: var(--mid-gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--mid-gray);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .reservation-form { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .reservation-form .btn-dark { grid-column: span 1; }
+            nav { padding: 20px; flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SEULGI</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reservations">Reservations</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Seulgi Restaurant</h1>
+        <p>“Modern Korean Cuisine, Elevated to Fine Dining.”</p>
+        <div class="hero-btns">
+            <a href="#menu" class="btn btn-primary">View Menu</a>
+            <a href="#reservations" class="btn btn-outline">Reserve a Table</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2 class="section-title">The Experience</h2>
+        <div class="section-subtitle">A Culinary Journey</div>
+        <p>Seulgi Restaurant presents refined Korean cuisine through a modern fine dining experience. Inspired by traditional Korean flavors and elevated with contemporary culinary techniques, each dish is crafted to balance elegance, authenticity, and artistry.</p>
+    </section>
+
+    <section id="menu" class="menu">
+        <h2 class="section-title">Our Menu</h2>
+        <div class="section-subtitle">Curated with Precision</div>
+        
+        <div class="menu-container">
+            
+            <div class="menu-category">
+                <h3>Appetizers</h3>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Hobak Jeon</span>
+                        <span class="menu-item-price">₱480</span>
+                    </div>
+                    <div class="menu-item-desc">Crispy zucchini pancakes lightly battered and pan-seared to golden perfection. Served with tangy soy dipping sauce.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Veggie-Packed Korean Street Toast</span>
+                        <span class="menu-item-price">₱520</span>
+                    </div>
+                    <div class="menu-item-desc">Buttery brioche filled with fluffy egg omelet, crisp vegetables, and sweet-savory glaze.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Tteokbokki</span>
+                        <span class="menu-item-price">₱650</span>
+                    </div>
+                    <div class="menu-item-desc">Tender rice cakes in spicy-sweet gochujang sauce with premium fish cakes and egg.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Haemul Pajeon</span>
+                        <span class="menu-item-price">₱680</span>
+                    </div>
+                    <div class="menu-item-desc">Crisp seafood scallion pancake with shrimp and squid in delicate batter.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Jatjuk</span>
+                        <span class="menu-item-price">₱450</span>
+                    </div>
+                    <div class="menu-item-desc">Velvety pine nut porridge made with premium Korean pine nuts and rice.</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Soups</h3>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Dakgomtang</span>
+                        <span class="menu-item-price">₱580</span>
+                    </div>
+                    <div class="menu-item-desc">Clear Korean chicken bone soup with tender shredded chicken.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Samgyetang</span>
+                        <span class="menu-item-price">₱750</span>
+                    </div>
+                    <div class="menu-item-desc">Whole chicken stuffed with glutinous rice, ginseng, garlic, and jujube.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Seolleongtang</span>
+                        <span class="menu-item-price">₱680</span>
+                    </div>
+                    <div class="menu-item-desc">Milky ox bone soup with tender brisket slices.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Yukgaejang</span>
+                        <span class="menu-item-price">₱650</span>
+                    </div>
+                    <div class="menu-item-desc">Spicy shredded beef soup with vegetables and chili broth.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Dakgaejang</span>
+                        <span class="menu-item-price">₱620</span>
+                    </div>
+                    <div class="menu-item-desc">Spicy chicken soup with scallions and bean sprouts.</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Salads</h3>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Pa Muchim</span>
+                        <span class="menu-item-price">₱380</span>
+                    </div>
+                    <div class="menu-item-desc">Crisp scallion salad with spicy sesame dressing.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Dubu Salad</span>
+                        <span class="menu-item-price">₱420</span>
+                    </div>
+                    <div class="menu-item-desc">Silken tofu with fresh greens and soy chili vinaigrette.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Gamja Salad</span>
+                        <span class="menu-item-price">₱450</span>
+                    </div>
+                    <div class="menu-item-desc">Creamy Korean potato salad with vegetables and egg.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Musaengchae</span>
+                        <span class="menu-item-price">₱400</span>
+                    </div>
+                    <div class="menu-item-desc">Spicy Korean radish salad.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Dak Naengchae</span>
+                        <span class="menu-item-price">₱520</span>
+                    </div>
+                    <div class="menu-item-desc">Chicken salad with crisp vegetables and sesame mustard dressing.</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Main Course – Red Meat</h3>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Bulgogi Deopbap</span>
+                        <span class="menu-item-price">₱680</span>
+                    </div>
+                    <div class="menu-item-desc">Grilled marinated beef served over steamed rice.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Galbi</span>
+                        <span class="menu-item-price">₱850</span>
+                    </div>
+                    <div class="menu-item-desc">Char-grilled Korean BBQ short ribs.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Dwaeji Bulgogi</span>
+                        <span class="menu-item-price">₱620</span>
+                    </div>
+                    <div class="menu-item-desc">Spicy stir-fried pork with gochujang marinade.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Jeyuk Deopbap</span>
+                        <span class="menu-item-price">₱650</span>
+                    </div>
+                    <div class="menu-item-desc">Spicy pork served over rice.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Bibimbap</span>
+                        <span class="menu-item-price">₱720</span>
+                    </div>
+                    <div class="menu-item-desc">Stone pot rice bowl with vegetables, marinated beef, egg, and gochujang.</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Main Course – White Meat</h3>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Soy Garlic Korean Fried Chicken</span>
+                        <span class="menu-item-price">₱680</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Baked Korean Chicken Wings</span>
+                        <span class="menu-item-price">₱580</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Sweet Spicy Korean Fried Chicken</span>
+                        <span class="menu-item-price">₱720</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Godeungeo Gui</span>
+                        <span class="menu-item-price">₱650</span>
+                    </div>
+                    <div class="menu-item-desc">Charcoal grilled mackerel.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Dakdoritang</span>
+                        <span class="menu-item-price">₱680</span>
+                    </div>
+                    <div class="menu-item-desc">Spicy braised chicken stew with vegetables.</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Hot Desserts</h3>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Patjuk</span>
+                        <span class="menu-item-price">₱420</span>
+                    </div>
+                    <div class="menu-item-desc">Sweet red bean porridge.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Hotteok</span>
+                        <span class="menu-item-price">₱380</span>
+                    </div>
+                    <div class="menu-item-desc">Golden pancakes filled with brown sugar and cinnamon.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Gyeran-Ppang</span>
+                        <span class="menu-item-price">₱350</span>
+                    </div>
+                    <div class="menu-item-desc">Korean egg bread.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Bungeoppang</span>
+                        <span class="menu-item-price">₱400</span>
+                    </div>
+                    <div class="menu-item-desc">Fish-shaped pastry with red bean filling.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Hoppang</span>
+                        <span class="menu-item-price">₱380</span>
+                    </div>
+                    <div class="menu-item-desc">Steamed buns with sweet red bean paste.</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Cold Desserts</h3>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Yaksik</span>
+                        <span class="menu-item-price">₱480</span>
+                    </div>
+                    <div class="menu-item-desc">Sweet glutinous rice with chestnuts and jujubes.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Bingsu</span>
+                        <span class="menu-item-price">₱520</span>
+                    </div>
+                    <div class="menu-item-desc">Milk shaved ice with fruits and condensed milk.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Subak Hwachae</span>
+                        <span class="menu-item-price">₱450</span>
+                    </div>
+                    <div class="menu-item-desc">Chilled watermelon fruit punch.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Injeolmi Bingsu</span>
+                        <span class="menu-item-price">₱580</span>
+                    </div>
+                    <div class="menu-item-desc">Milk shaved ice with chewy rice cakes and soybean powder.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Hoshi-imo</span>
+                        <span class="menu-item-price">₱380</span>
+                    </div>
+                    <div class="menu-item-desc">Naturally sweet dried Japanese sweet potatoes.</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Beverages</h3>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Strawberry Milk Korean</span>
+                        <span class="menu-item-price">₱380</span>
+                    </div>
+                    <div class="menu-item-desc">Fresh strawberry milk with house-made syrup.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Lemon Cheong</span>
+                        <span class="menu-item-price">₱350</span>
+                    </div>
+                    <div class="menu-item-desc">Korean lemon honey ginger drink.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Iced Tea</span>
+                        <span class="menu-item-price">₱280</span>
+                    </div>
+                    <div class="menu-item-desc">House brewed chilled tea.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Coke Can</span>
+                        <span class="menu-item-price">₱150</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-title">Water Bottle</span>
+                        <span class="menu-item-price">₱120</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="reservations" class="reservation">
+        <h2 class="section-title">Reserve a Table</h2>
+        <div class="section-subtitle">Join us for an unforgettable evening</div>
+        
+        <form class="reservation-form">
+            <div class="form-group full-width">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Time</label>
+                <input type="time" id="time" required>
+            </div>
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <select id="guests" required>
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5+ Guests</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact Number</label>
+                <input type="tel" id="contact" required placeholder="+63 900 000 0000">
+            </div>
+            <button type="submit" class="btn btn-dark">Reserve Table</button>
+        </form>
+    </section>
+
+    <section class="qr-section">
+        <div class="qr-card">
+            <h4 class="serif">Scan to Visit Seulgi Restaurant</h4>
+            <p>Scan this QR code to explore the full menu and reserve a table.</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=www.seulgirestaurant.com" alt="Seulgi Restaurant QR Code">
+        </div>
+    </section>
+
+    <footer>
+        <h2 class="serif">Seulgi Restaurant</h2>
+        <p>Fine Dining Korean Cuisine</p>
+        
+        <div class="social-icons">
+            <a href="#">Instagram</a> | 
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a>
+        </div>
+        
+        <p>123 Culinary Ave, Metro Manila, Philippines<br>+63 900 000 0000 | reservations@seulgirestaurant.com</p>
+        
+        <div class="copyright">
+            &copy; 2026 Seulgi Restaurant. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
